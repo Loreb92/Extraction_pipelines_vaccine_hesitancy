@@ -1,9 +1,9 @@
 # Extraction pipelines vaccine hesitancy
 ### Repository for the Lagrange Scholarships Projects about Vaccine Hesitancy - Extraction pipelines  
 
-In this project, we developed two high precision rule-based extraction pipelines able to classify users with respect to vaccination behaviors and experiences from user-generated content. The items we tracked are (i) adherence to the recommended or alternative vaccination schedule and (ii) mentions of positive or negative experiences with adverse events following immunization (AEFI).  
+In this project, we developed two high precision rule-based extraction pipelines able to classify text with respect to vaccination behaviors and experiences. The items we tracked are (i) adherence to the recommended or alternative vaccination schedule and (ii) mentions of positive or negative experiences with adverse events following immunization (AEFI).  
 
-The two pipelines share the same workflow and work at the level of sentences. They are made up by a filter and a classifier. The filter identifies sentences which contain information relevant to the item under consideration by using a combination of rules based on the occurrence of certain keyword with specific syntactic dependencies, while the classifier assigns the appropriate label to the sentence. To classify users, the labels of their comments are propagated. 
+The two pipelines share the same workflow and work at the level of sentences. They are made up by a filter and a classifier. The filter identifies sentences which contain information relevant to the item under consideration by using a combination of rules based on the occurrence of certain keyword with specific syntactic dependencies, while the classifier assigns the appropriate label to the sentence. 
 
 The rules of the pipelines are handcrafted and developed by inspecting a dataset composed by comments related to vaccination, collected from a popular parenting forum (BabyCenter.com https://community.babycenter.com/). We share a sample of these comments in this repository.
 
