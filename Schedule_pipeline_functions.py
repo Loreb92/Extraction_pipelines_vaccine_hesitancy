@@ -3,9 +3,6 @@ import re
 from numpy import nan as NAN
 from os import listdir
 
-from sys import path
-path.append('/home/lorenzobetti/Lagrange/Babycenter/Babycenter_US_definitive_paper/coding_work_in_progress')
-
 import text_elaboration as te
 import Dependency_tree_functions as DepTree
 
