@@ -11,14 +11,14 @@ __________________________
 ### Requirements
 
 ```
-python (3.7.4)
+python   (3.7.4)
 
-spacy
-pandas (0.25.1)
-numpy (1.17.2)
-nltk (3.4.5)
+spacy    (2.2.3)
+pandas   (0.25.1)
+numpy    (1.17.2)
+nltk     (3.4.5)
 networkx (2.3)
-spacy (2.2.3)
+spacy    (2.2.3)
 ```
 
 To load spacy language model:
