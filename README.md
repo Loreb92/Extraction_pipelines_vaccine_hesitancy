@@ -11,25 +11,40 @@ __________________________
 ### Requirements
 
 ```
-spacy
-pandas
+python (3.7.4)
 
+spacy
+pandas (0.25.1)
+numpy (1.17.2)
+nltk (3.4.5)
+networkx (2.3)
+spacy (2.2.3)
+```
+
+To load spacy language model:
+```
+>>> python -m spacy download en_core_web_sm
 ```
 __________________________
 
 ### Structure of the repository
 
-1. ```code```
+1. ```Schedule_noun_pattern_keywords``` contains the keywords and the corresponding dependency rule used to filter relevant matches retrieved with the "schedule_noun" pattern
 
-* ```vaccination_schedule``` contains the scripts to retrieve comments related to the vaccination schedule of the author and classify them depending on whether the schedule is the "recommended" or "alternative", and the classification of users based on their schedule-related comments.
+2. ```Delay_verbs_pattern_keywords``` contains the keywords and the corresponding dependency rule used to filter relevant matches retrieved with the "delay_verbs" pattern
 
-* ```experiences_AEFI``` contains the scripts to retrieve comments related to past experiences with AEFI and classify them in "positive_experience" or "negative_experience", and the classification of users based on their comments related to experiences of AEFI.
+3. ```data``` contains a sample of the comments related to vaccination collected from BabyCenter.com
 
+4. ```results``` contains the outputs of the extraction pipelines: the structure representation of the sentences matched and the final classification of comments
 
-2. ```data``` contains a sample of the comments related to vaccination collected from BabyCenter.com
+* ```Dependency_tree_functions.py``` contains the scripts to represent the dependency parser of a sentence trough a network (using the networkx library). In addition, there are functions to search information by naviganting the dependency tree
 
+* ```Schedule_pipeline_functions.py``` contains the scripts defining the vaccination scheduling pipeline
 
-3. ```results``` contains the outputs of the extraction pipelines, consisting of the structure representation of the sentences of interest, the final classification of comments and users.
+* ```text_elaboration.py``` contains the scripts for basic text preprocessing 
+
+* ```Vaccination_schedule_comment_classification.ipynb``` is the notebook in which the pipeline is applied to the sample of comments located in the ```data``` folder
+
 
 
 __________________________
