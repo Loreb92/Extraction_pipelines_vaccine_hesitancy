@@ -46,7 +46,3 @@ __________________________
 * ```Vaccination_schedule_comment_classification.ipynb``` is the notebook in which the pipeline is applied to the sample of comments located in the ```data``` folder
 
 
-
-__________________________
-
-### Getting started
