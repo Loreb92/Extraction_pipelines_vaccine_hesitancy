@@ -1,0 +1,111 @@
+AF	menstruation
+AP	attachment parenting
+BB	Internet bulletin board
+BBS	Internet bulletin board
+BBC	BabyCenter
+BBL	be back later
+BBT	basal body temperature
+BC	birth control before children
+BCPS	birth control pills
+BD	baby dance (sex)
+BF	breastfeed
+BFing	breastfeed
+BFING	breastfeed
+BFN	negative pregnancy test
+BFP	positive pregnancy test
+BIL	brother-in-law
+BLW	baby-led weaning
+BM	breast milk bowel movement
+BRB	be right back
+BTDT	been there, done that
+BTW	by the way
+CD	cycle day
+CF	cervical fluid
+CIO	cry it out
+Circ.	circumcise
+CM	cervical mucus
+CWIM	see what I mean
+CS	cesarean section
+C/S	cesarean section
+DD	dear daughter
+DF	dear fiancee
+DH	dear husband
+DP	dear partner
+DPO	days past ovulation
+DS	dear son
+DSD	dear stepdaughter
+DSS	dear stepson
+DTD	do the deed
+DuH	dumb husband
+DuW	dumb wife
+DW	dear wife
+EBF	breastfeeding
+EBM	expressed breast milk
+EDD	expected date of delivery
+ETA	estimated time of arrival
+EWCM	egg white cervical mucus
+FF	formula feeding
+FIL	father-in-law
+FT	full time
+FTM	first time mom
+FTR	for the record
+FWIW	for what it's worth
+FYI	for your information
+HPT	home pregnancy test
+HTH	hope this helps
+IC	incompetent cervix
+IMHO	in my humble opinion
+IMO	in my opinion
+IRL	in real life
+ITA	I totally agree
+IUI	intrauterine insemination
+IVF	in vitro fertilization
+J/J	just joking
+J/J	just joking
+J/K	just kidding
+J/K	just kidding
+JMHO	just my humble opinion
+KWIM	know what I mean
+L&D	labor and delivery
+LO	little one
+LOL	laughing out loud
+LP	luteal phase
+MC	miscarriage
+M/C	miscarriage
+MIL	mother-in-law
+ML	maternity leave
+MM	mother's milk
+MS	morning sickness multiple sclerosis
+M/S	morning sickness multiple sclerosis
+MYOB	mind your own business
+NMS	not my style
+NMSAA	not my style at all
+NP	no problem
+O	ovulation
+O'd	ovulated
+OH	other half
+OMG	oh my god
+OP	original poster
+OPK	ovulation predictor kit
+OT	off topic
+PG	pregnant
+POAS	pee on a stick
+PP	previous poster
+PPD	postpartum depression
+RE	reproductive endocrinologist
+ROFL	rolling on floor laughing
+SAHD	stay-at-home dad
+SAHM	stay-at-home mom
+SAHP	stay-at-home parent
+SD	sperm donor
+SIL	sister-in-law
+SO	significant other
+TCOYF	Taking Charge of Your Fertility
+TIA	thanks in advance
+TMI	too much information
+TTC	trying to conceive
+US	ultrasound
+U/S	ultrasound
+VBAC	vaginal birth after cesarean section
+WAH	work at home
+WOH	work out of the home
