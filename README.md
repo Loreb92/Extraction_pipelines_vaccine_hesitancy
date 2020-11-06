@@ -30,20 +30,28 @@ __________________________
 
 ### Structure of the repository
 
-1. ```Schedule_noun_pattern_keywords``` contains the keywords and the corresponding dependency rule used to filter relevant matches retrieved with the "schedule_noun" pattern
+1. ```Experiences_AEFI``` contains the keywords used to filter sentences relevant to experiences with adverse events following immunization
 
-2. ```Delay_verbs_pattern_keywords``` contains the keywords and the corresponding dependency rule used to filter relevant matches retrieved with the "delay_verbs" pattern
+2. ```Vaccination_schedule``` contains the keywords used to filter sentences relevant to vaccination scheduling
 
 3. ```data``` contains a sample of the comments related to vaccination collected from BabyCenter.com
 
-4. ```results``` contains the outputs of the extraction pipelines: the structure representation of the sentences matched and the final classification of comments
+4. ```output``` contains the results of the two pipelines
+
+5. ```test``` contains a list of sentences and the corresponding dependency trees. It is useful to test if the dependency parser of SpaCy returns the expected parsing
+
+6. ```utils``` contains files useful for the pipelines
+
+* ```AEFI_pipeline_functions.py``` contains the script thad defines the extraction pipeline of experiences of adverse reactions following immunization.
 
 * ```Dependency_tree_functions.py``` contains the scripts to represent the dependency parser of a sentence trough a network (using the networkx library). In addition, there are functions to search information by naviganting the dependency tree
 
+* ```Experiences AEFI : commentclassification.ipynb``` is the notebook in which the pipeline of experiences of adverse reactions following immunization is applied to the sample of comments located in the ```data``` folder
+
 * ```Schedule_pipeline_functions.py``` contains the scripts defining the vaccination scheduling pipeline
 
+* ```Vaccination schedule : comment classification.ipynb``` is the notebook in which the pipeline is applied to the sample of comments located in the ```data``` folder
+
+* ```test_dependency_parsing.ipynb``` is the notebook in which the dependency parser is tested and compared with the expected behavior
+
 * ```text_elaboration.py``` contains the scripts for basic text preprocessing 
-
-* ```Vaccination_schedule_comment_classification.ipynb``` is the notebook in which the pipeline is applied to the sample of comments located in the ```data``` folder
-
-
