@@ -225,9 +225,10 @@ def inspect_principal_clause(G, verb):
     
     verb_phrase_xcomp, verb_tense_xcomp = DepTree.get_verb_phrase(G, verb_xcomp[0])
     # find subject (no passive because there are molto pochi)
-    subject_xcomp = DepTree.find_subject(G, verb_xcomp[0], passive=False)
+    subject_xcomp = DepTree.find_subjects(G, verb_xcomp[0], passive=False)
     
     if len(subject_xcomp)>0:
+        subject_xcomp = [subject_xcomp[-1]]
         amod, compound, pos, det = DepTree.find_modifiers(G, subject_xcomp[0])
     else:
         return [], [], [], [], [], [], [], []
@@ -301,11 +302,11 @@ def Structured_representation(idxs_keywords):
             in_dep_verb = [dep for source, target, dep in G.in_edges(verb, data='dep')]
             out_dep_verb = [dep for source, target, dep in G.edges(verb, data='dep')]
             if 'nsubj' in in_dep_verb or 'nsubjpass' in in_dep_verb or 'conj' in out_dep_verb:
-                subject, active = DepTree.find_subject(G, verb), 'ACTIVE'
+                subject, active = DepTree.find_subjects(G, verb), 'ACTIVE'
                 if subject==[]:
-                    subject, active = DepTree.find_subject(G, verb, passive=True), 'PASSIVE'          
+                    subject, active = DepTree.find_subjects(G, verb, passive=True), 'PASSIVE'          
               
-                report['subject'] = subject
+                report['subject'] = [subject[-1]] if len(subject)>0 else []
                 report['subject_active'] = active
                 
                 amod_subj, compound_subj, pos_subj, det_subj = DepTree.find_modifiers(G, subject)
@@ -465,18 +466,19 @@ Now that the structured representation is obtained, it can be read as a Pandas D
 
 # useful function to get values from the DF
 split_objects = lambda string: string.split(', ') if type(string)==str else [NAN]
+folder_keywords = 'Vaccination_schedule/'
 
 # load keywords to be filtered with certain depencencies
-files_schedule_noun_pattern = listdir('Schedule_noun_pattern_keywords')
+files_schedule_noun_pattern = listdir(folder_keywords+'Schedule_noun_pattern_keywords')
 KEYWORDS_schedule_noun = {}
 for file in [i for i in files_schedule_noun_pattern if '.txt' in i]:
-    with open('Schedule_noun_pattern_keywords/'+file) as f:
+    with open(folder_keywords+'Schedule_noun_pattern_keywords/'+file) as f:
         KEYWORDS_schedule_noun[file[:-4]] = set(f.read().splitlines())
     
-files_delay_verbs_pattern = listdir('Delay_verbs_pattern_keywords')
+files_delay_verbs_pattern = listdir(folder_keywords+'Delay_verbs_pattern_keywords')
 KEYWORDS_delay_verbs = {}
 for file in [i for i in files_delay_verbs_pattern if '.txt' in i]:
-    with open('Delay_verbs_pattern_keywords/'+file) as f:
+    with open(folder_keywords+'Delay_verbs_pattern_keywords/'+file) as f:
         KEYWORDS_delay_verbs[file[:-4]] = set(f.read().splitlines())
 
 modifiers_stance = {
@@ -546,13 +548,7 @@ possessives_schedule_stance = {
 
 def Classifier_schedule_noun_pattern(row):
     '''
-    This function classifies the sentences matched with the "schedule_noun" pattern. It takes into account both the modifiers of the word "schedule" and negations in the sentence.
     
-    Input:
-    row : a DataFrame row corresponding to the structured representation of the sentence
-    
-    Returns:
-    classification : int, +1 if "recommended" and -1 if "alternative"
     '''
     classification = 1 if row.verb_lemma not in ['delay', 'space', 'spread'] else -1
 
@@ -598,13 +594,7 @@ def Classifier_schedule_noun_pattern(row):
     
 def Classifier_delay_verbs_pattern(row):
     '''
-    This function classifies the sentences matched with the "delay_verbs" pattern. As the verb indicate an altarnative way of vaccinating by itself, here only negations are taken into account.
     
-    Input:
-    row : a DataFrame row corresponding to the structured representation of the sentence
-    
-    Returns:
-    classification : int, +1 if "recommended" and -1 if "alternative"
     '''
     classification = -1
     classification *= row.negations
@@ -614,13 +604,7 @@ def Classifier_delay_verbs_pattern(row):
 
 def filter_schedule_noun(row):
     '''
-    This function applies the filter to the sentences matched with the 'schedule_noun' pattern to identify sentences not related to the vaccination schedule behavior of the author. It compares the structure representation of the sentence with a set of words in order to filter out unrelevant sentences. For the sentences identified as schedule-related, this function calls the function "Classifier_schedule_noun_pattern" to assign the final label.
     
-    Input:
-    row : a DataFrame row corresponding to the structured representation of the sentence
-    
-    Returns:
-    classification : 'FILTERED_OUT' if the sentence is not relevant, else +1 or -1 depending on the kind of schedule followed by the author
     '''
     
     # if the modifiers are the ones to avoid skipp
@@ -666,15 +650,8 @@ def filter_schedule_noun(row):
 def filter_delay_verbs(row):
     
     '''
-    This function applies the filter to the sentences matched with the 'delay_verbs' pattern to identify sentences not related to the vaccination schedule behavior of the author. It compares the structure representation of the sentence with a set of words in order to filter out unrelevant sentences. For the sentences identified as schedule-related, this function calls the function "Classifier_schedule_noun_pattern" to assign the final label.
     
-    Input:
-    row : a DataFrame row corresponding to the structured representation of the sentence
-    
-    Returns:
-    classification : 'FILTERED_OUT' if the sentence is not relevant, else +1 or -1 depending on the kind of schedule followed by the author
     '''
-    
     flag = False
     # if the objects is among the ones not to take
     if len(set(split_objects(row.dobj_lower)).intersection(KEYWORDS_delay_verbs['OBJECTS_TO_AVOID']))>0:
@@ -715,13 +692,7 @@ def filter_delay_verbs(row):
     
 def Filter(row):
     '''
-    This function applies the filter to the sentences matched with the patterns "schedule_noun" and "delay_verbs" and applies the classifier to schedule-related sentences.
     
-    Input:
-    row : a DataFrame row corresponding to the structured representation of the sentence
-    
-    Returns:
-    classification : 'FILTERED_OUT' if the sentence is not relevant, else +1 or -1 depending on the kind of schedule followed by the author
     '''
     
     flag = False

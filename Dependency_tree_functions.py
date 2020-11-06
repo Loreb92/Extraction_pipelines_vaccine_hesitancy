@@ -1,4 +1,6 @@
 '''
+21/09/2010
+
 This file contains the functions used to i) construct a dependency tree from a sentence and ii) retrieve information from the tree.
 
 Dependency trees are obtained through the SpaCy library and represented using the Networkx library:
@@ -8,6 +10,14 @@ Dependency trees are obtained through the SpaCy library and represented using th
 Because of it was more useful for me, the directed links indicating syntactic relationships have opposite directions respect to the usual ones, so from all the nodes there always exists a path from the node to the root of the tree.
 
 See "Dependency_tree_functions_debugging.ipynb" for examples
+
+
+NOTES:
+19/10/20  
+changed function "find_objects" : now it takes the argument "depend" as a list in order to collect more than one dependency
+
+21/10/20  
+changed function "find_subject"-->"find_subjects" : now now it returns also more than one subject
 '''
 
 import networkx as nx
@@ -497,14 +507,14 @@ def iterate_over_conj(G, idx_word):
 
 
 
-def find_objects(G, idx_word, depend='dobj', out_neig=False):
+def find_objects(G, idx_word, depend=['dobj'], out_neig=False):
     '''
     Given a word, search the source of the links with label "dobj", including conjunctions.
     
     Input:
     G : nx.DiGraph, the dependency tree
     idx_word : int, the index (name in the graph) of the word
-    depend : str, kind of dependency to search for
+    depend : list of str, kind of dependencies to search for
     out_neig : bool, whether to search among out neighbors
     
     TO DO:
@@ -525,12 +535,12 @@ def find_objects(G, idx_word, depend='dobj', out_neig=False):
     >>> print(G.nodes(data='lower'))
     [(0, 'i'), (2, 'love'), (7, 'my'), (10, 'son'), (14, 'and'), (18, 'my'), (21, 'daughter')]
     >>> idxs_love = DepTree.get_nodes_by_attribute(G, 'lemma', 'love')
-    >>> DepTree.find_objects(G, idxs_love[0])
+    >>> DepTree.find_objects(G, idxs_love[0], ['dobj])
     [10, 21] # respectively, the index of "son" and "daughter"  
     
     '''
     
-    objs = find_neighbors_with_dependencies(G, idx_word, [depend], out_neig=out_neig)
+    objs = find_neighbors_with_dependencies(G, idx_word, depend, out_neig=out_neig)
     
     if objs!=[]:
         objs_ = []
@@ -545,7 +555,7 @@ def find_objects(G, idx_word, depend='dobj', out_neig=False):
 
 
 
-def find_subject(G, idx_verb, passive=False):
+def find_subjects(G, idx_verb, passive=False):
     '''
     Find the subject of a verb. If the subject is not explicit, search among 'conj'
     
@@ -592,7 +602,8 @@ def find_subject(G, idx_verb, passive=False):
 
     if len(subject)>0: 
         # take the last subject
-        subject = [subject[-1]]
+        #subject = [subject[-1]]
+        None
       
     # if there is the passive (active) don't search with and!
     elif len(find_neighbors_with_dependencies(G, idx_verb, [dep_]))>0:
@@ -607,7 +618,8 @@ def find_subject(G, idx_verb, passive=False):
         if len(verb_conj)>0:
             subject = find_neighbors_with_dependencies(G, verb_conj, [dep])
             if len(subject)>0:
-                subject = [subject[-1]]
+                #subject = [subject[-1]]
+                None
             else:
                 subject = []     
         else:
@@ -615,6 +627,33 @@ def find_subject(G, idx_verb, passive=False):
 
     return subject
 
+
+def is_equal_dep_tree(G1, G2):
+    '''
+    Check if the two dependency trees are equal.
+    
+    Input:
+    G1 : nx.DiGraph, the dependency tree
+    G2 : nx.DiGraph, the dependency tree
+    
+    Returns:
+    are_equal : bool, True if the two graphs are equal.
+    '''
+    
+    df_G1 = nx.to_pandas_edgelist(G1)
+    df_G2 = nx.to_pandas_edgelist(G2)
+    
+    df_G1.loc[: ,'source_lower'] = df_G1.source.apply(lambda s: G1.nodes()[s]['lower'])
+    df_G1.loc[: ,'target_lower'] = df_G1.target.apply(lambda t: G1.nodes()[t]['lower'])
+    df_G1 = df_G1.sort_values('dep').reset_index()
+    
+    df_G2.loc[: ,'source_lower'] = df_G2.source.apply(lambda s: G2.nodes()[s]['lower'])
+    df_G2.loc[: ,'target_lower'] = df_G2.target.apply(lambda t: G2.nodes()[t]['lower'])
+    df_G2 = df_G2.sort_values('dep').reset_index()
+    
+    are_equal = all(df_G1[['dep', 'source_lower', 'target_lower']] == df_G2[['dep', 'source_lower', 'target_lower']])
+    
+    return are_equal
 
 
 

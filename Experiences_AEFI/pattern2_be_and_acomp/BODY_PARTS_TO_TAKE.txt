@@ -1,0 +1,13 @@
+area
+arm
+arms
+face
+leg
+legs
+muscle
+shoulder
+site
+sites
+spot
+thigh
+thighs
