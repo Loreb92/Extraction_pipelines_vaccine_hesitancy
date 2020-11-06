@@ -23,7 +23,7 @@ pickle
 
 To load spacy language model:
 ```
->>> python -m spacy download en_core_web_sm
+>>> python -m spacy download en_core_web_sm-2.2.5 --direct
 ```
 __________________________
 
