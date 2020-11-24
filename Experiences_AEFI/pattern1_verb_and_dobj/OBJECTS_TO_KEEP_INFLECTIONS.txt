@@ -2,8 +2,6 @@ arm
 armed
 arming
 arms
-asthmas
-autisms
 bump
 bumped
 bumping
@@ -34,7 +32,6 @@ headache
 headaches
 injuries
 injury
-lives
 lump
 lumped
 lumping
@@ -57,9 +54,6 @@ regression
 regressions
 seizure
 seizures
-shingle
-shingled
-shingling
 spot
 spotest
 spots

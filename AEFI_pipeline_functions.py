@@ -1120,9 +1120,7 @@ def Filter(row):
     row : pd.Series, the structured representation of the match
     
     Returns:
-    pd.Series : contains the classification and the kinds of reaction and subject identified. 
-    
-    Example:
+    pd.Series : contains the classification, the kinds of reaction and subject identified. 
     
     '''
     

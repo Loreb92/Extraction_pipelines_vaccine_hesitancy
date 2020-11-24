@@ -548,8 +548,9 @@ possessives_schedule_stance = {
 
 def Classifier_schedule_noun_pattern(row):
     '''
-    
+    Apply the classifier to the filtered matches.
     '''
+    
     classification = 1 if row.verb_lemma not in ['delay', 'space', 'spread'] else -1
 
     if classification == +1:
@@ -594,8 +595,9 @@ def Classifier_schedule_noun_pattern(row):
     
 def Classifier_delay_verbs_pattern(row):
     '''
-    
+    Apply the classifier to the filtered matches.
     '''
+    
     classification = -1
     classification *= row.negations
     
@@ -604,7 +606,7 @@ def Classifier_delay_verbs_pattern(row):
 
 def filter_schedule_noun(row):
     '''
-    
+    Apply the filter to matches retrieved with the schedule_noun pattern
     '''
     
     # if the modifiers are the ones to avoid skipp
@@ -648,10 +650,10 @@ def filter_schedule_noun(row):
         return classification
     
 def filter_delay_verbs(row):
-    
+    '''
+    Apply the filter to matches retrieved with the delay_verbs pattern
     '''
     
-    '''
     flag = False
     # if the objects is among the ones not to take
     if len(set(split_objects(row.dobj_lower)).intersection(KEYWORDS_delay_verbs['OBJECTS_TO_AVOID']))>0:
@@ -692,7 +694,13 @@ def filter_delay_verbs(row):
     
 def Filter(row):
     '''
+    Apply the filter to the structured representation of a match.
     
+    Input:
+    row : pd.Series, the structured representation of the match.
+    
+    Returns:
+    pd.Series : contains the classification.     
     '''
     
     flag = False
