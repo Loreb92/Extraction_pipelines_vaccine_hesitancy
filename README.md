@@ -1,5 +1,5 @@
 # Extraction pipelines vaccine hesitancy
-### Repository for the Lagrange Scholarships Projects about Vaccine Hesitancy - Extraction pipelines  
+### Repository for the Lagrange Scholarship Project about Vaccine Hesitancy - Extraction pipelines  
 
 In this project, we developed two high precision rule-based extraction pipelines able to classify text with respect to vaccination behaviors and experiences. The items we tracked are (i) adherence to the recommended or alternative vaccination schedule and (ii) mentions of positive or negative experiences with adverse events following immunization (AEFI).  
 
