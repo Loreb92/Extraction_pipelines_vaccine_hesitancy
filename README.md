@@ -5,7 +5,9 @@ In this project, we developed two high precision rule-based extraction pipelines
 
 The two pipelines share the same workflow and work at the level of sentences. They are made up by a filter and a classifier. The filter identifies sentences which contain information relevant to the item under consideration by using a combination of rules based on the occurrence of certain keyword with specific syntactic dependencies, while the classifier assigns the appropriate label to the sentence. 
 
-The rules of the pipelines are handcrafted and developed by inspecting a dataset composed by comments related to vaccination, collected from a popular parenting forum (BabyCenter.com https://community.babycenter.com/). We share a sample of these comments in this repository.
+The rules of the pipelines are handcrafted and developed by inspecting a dataset composed by comments related to vaccination, collected from a popular parenting forum (BabyCenter.com https://community.babycenter.com/). 
+
+Due to the Terms of Use of the forum, we can not make the dataset of user posts and comments available. We release only the resulting interaction network.
 
 __________________________
 ### Requirements
@@ -33,7 +35,7 @@ __________________________
 
 2. ```Vaccination_schedule``` contains the keywords used to filter sentences relevant to vaccination scheduling
 
-3. ```data``` contains a sample of the comments related to vaccination collected from BabyCenter.com
+3. ```data``` contains the interaction network
 
 4. ```output``` contains the results of the two pipelines
 
